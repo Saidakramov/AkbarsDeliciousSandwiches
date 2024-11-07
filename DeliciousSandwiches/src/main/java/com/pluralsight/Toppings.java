@@ -33,4 +33,14 @@ public class Toppings {
         return isPremium;
     }
 
+    @Override
+    public String toString() {
+        return "Toppings{" +
+                "name='" + name + '\'' +
+                ", isPremium=" + isPremium +
+                ", price4Inch=" + price4Inch +
+                ", price8Inch=" + price8Inch +
+                ", price12Inch=" + price12Inch +
+                '}';
+    }
 }
