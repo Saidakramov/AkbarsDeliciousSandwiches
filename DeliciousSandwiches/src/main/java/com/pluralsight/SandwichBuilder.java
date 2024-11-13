@@ -6,7 +6,7 @@ public class SandwichBuilder {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Order order = new Order();
+        Optional order = new Optional();
         System.out.println("Welcome to Akbar's Delicious Sandwiches!");
 
         String addMoreSandwiches;
@@ -29,14 +29,14 @@ public class SandwichBuilder {
     public static Sandwich buildSandwich() {
         System.out.println("\nLet's build your sandwich.");
 
-        String size = input("Choose your sandwich size (4, 8, or 12 inches): ");
+        int size = Integer.parseInt(input("Choose your sandwich size (4, 8, or 12 inches): ").trim());
         String breadType = input("Choose your bread type (White, Wheat, Rye, Wrap): ");
         boolean toasted = input("Would you like it toasted? (y/n): ").equalsIgnoreCase("y");
 
-        Sandwich sandwich = new Sandwich(size, breadType, toasted);
+        Sandwich sandwich = new Sandwich(breadType, size, toasted);
 
         // Add regular toppings
-        System.out.println("Select regular toppings (type names separated by commas, or 'none' to skip):");
+        System.out.println("Select regular toppings (type names separated by commas, or type 'all' for everything, or 'none' to skip):");
         printToppings(Menu.REGULAR_TOPPINGS);
         String regularChoice = scanner.nextLine();
         addTopping(sandwich, regularChoice, Menu.REGULAR_TOPPINGS);
@@ -68,20 +68,34 @@ public class SandwichBuilder {
     }
 
     public static void addTopping(Sandwich sandwich, String choice, Toppings[] toppings) {
-        if (!choice.equalsIgnoreCase("none")) {
-            String[] selectedToppings = choice.split(",");
-            for (String toppingName : selectedToppings) {
-                toppingName = toppingName.trim();
-                for (Toppings t : toppings) {
-                    if (t.getName().equalsIgnoreCase(toppingName)) {
-                        sandwich.addTopping(t);
-                    }
+        if (choice.equalsIgnoreCase("none")) {
+            return;
+        }
+
+        // If the choice is "all", add all toppings to the sandwich
+        if (choice.equalsIgnoreCase("all")) {
+            for (Toppings t : toppings) {
+                sandwich.addTopping(t);
+            }
+            return; // No need to process further if "all" is selected
+        }
+
+        // Otherwise, process individual toppings
+        String[] selectedToppings = choice.split(",");
+        for (String toppingName : selectedToppings) {
+            toppingName = toppingName.trim(); // Trim the topping name to avoid issues with spaces
+
+            // Find the topping and add it to the sandwich if it exists
+            for (Toppings t : toppings) {
+                if (t.getName().equalsIgnoreCase(toppingName)) {
+                    sandwich.addTopping(t);
+                    break; // Once we find the topping, no need to check further
                 }
             }
         }
     }
 
-    public static void addExtras(Order order) {
+    public static void addExtras(Optional order) {
         // Add drinks
         String drinkSize;
         do {

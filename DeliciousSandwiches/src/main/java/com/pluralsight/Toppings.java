@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+
 public class Toppings {
     private String name;
     private boolean isPremium;
@@ -15,15 +16,15 @@ public class Toppings {
         this.price12Inch = price12Inch;
     }
 
-    public double getPrice(String size) {
+    // Returns the price of this topping based on sandwich size
+    public double getPrice(int size) {
         return switch (size) {
-            case "4" -> price4Inch;
-            case "8" -> price8Inch;
-            case "12" -> price12Inch;
+            case 4 -> price4Inch;
+            case 8 -> price8Inch;
+            case 12 -> price12Inch;
             default -> 0;
         };
     }
-
 
     public String getName() {
         return name;

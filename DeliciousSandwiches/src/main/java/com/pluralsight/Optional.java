@@ -3,14 +3,14 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Optional {
     private List<Sandwich> sandwiches;
     private int smallDrink;
     private int mediumDrink;
     private int largeDrink;
     private int chips;
 
-    public Order() {
+    public Optional() {
         this.sandwiches = new ArrayList<>();
         this.smallDrink = 0;
         this.mediumDrink = 0;
@@ -24,7 +24,7 @@ public class Order {
 
     public void addDrink(String size) {
         switch (size) {
-            case "small": smallDrink ++; break;
+            case "small": smallDrink++; break;
             case "medium": mediumDrink++; break;
             case "large": largeDrink++; break;
         }
@@ -36,7 +36,7 @@ public class Order {
 
     public double calculateTotal() {
         double sandwichTotal = sandwiches.stream().mapToDouble(Sandwich::calculateCost).sum();
-        double drinkTotal = smallDrink * 2.0 + mediumDrink + 2.5 + largeDrink *3.0;
+        double drinkTotal = smallDrink * 2.0 + mediumDrink * 2.5 + largeDrink *3.0;
         double chipsTotal = chips * 1.5;
 
         return sandwichTotal + drinkTotal + chipsTotal;
