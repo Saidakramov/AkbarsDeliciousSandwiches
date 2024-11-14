@@ -1,13 +1,13 @@
 package com.pluralsight;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SandwichBuilder {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        Optional order = new Optional();
-        System.out.println("Welcome to Akbar's Delicious Sandwiches!");
+    public static void buildSandwichLoop() {
+        Order order = new Order();
 
         String addMoreSandwiches;
 
@@ -19,27 +19,17 @@ public class SandwichBuilder {
             addMoreSandwiches = input("\nWould you like to add another sandwich to your order? (y/n): ").toLowerCase();
         } while (addMoreSandwiches.equals("y"));
 
-        // Optionally add drinks and chips to the order
-        addExtras(order);
-
-        // Display the complete order summary
-        order.displayOrderSummary();
     }
 
     public static Sandwich buildSandwich() {
         System.out.println("\nLet's build your sandwich.");
 
-        int size = Integer.parseInt(input("Choose your sandwich size (4, 8, or 12 inches): ").trim());
+        //bread type options
         String breadType = input("Choose your bread type (White, Wheat, Rye, Wrap): ");
-        boolean toasted = input("Would you like it toasted? (y/n): ").equalsIgnoreCase("y");
 
-        Sandwich sandwich = new Sandwich(breadType, size, toasted);
-
-        // Add regular toppings
-        System.out.println("Select regular toppings (type names separated by commas, or type 'all' for everything, or 'none' to skip):");
-        printToppings(Menu.REGULAR_TOPPINGS);
-        String regularChoice = scanner.nextLine();
-        addTopping(sandwich, regularChoice, Menu.REGULAR_TOPPINGS);
+        //bread size options
+        int size = Integer.parseInt(input("Choose your sandwich size (4, 8, or 12 inches): ").trim());
+        Sandwich sandwich = new Sandwich(breadType, size);
 
         // Add premium meats
         System.out.println("Select premium meats (type names separated by commas, or 'none' to skip):");
@@ -53,19 +43,34 @@ public class SandwichBuilder {
         String cheeseChoice = scanner.nextLine();
         addTopping(sandwich, cheeseChoice, Menu.PREMIUM_CHEESES);
 
+        // Add regular toppings
+        System.out.println("Select regular toppings (type names separated by commas, or type 'all' for everything, or 'none' to skip):");
+        printToppings(Menu.REGULAR_TOPPINGS);
+        String regularChoice = scanner.nextLine();
+        addTopping(sandwich, regularChoice, Menu.REGULAR_TOPPINGS);
+
+        //sauces options
+        System.out.println(" Select your favourite sauces (type names separated by commas, or type 'all' for everything, or 'none' to skip):");
+        printSauces(Menu.SAUCES);
+        String sauceChoice = scanner.nextLine();
+        addSauces(sandwich, sauceChoice, Menu.SAUCES);
+
+        boolean toasted = input("Would you like it toasted? (y/n): ").equalsIgnoreCase("y");
+
         // Prompt for extra meat and cheese
         String extraMeat = input("Would you like extra meat? (y/n): ");
-        if (extraMeat.equalsIgnoreCase("y")) {
+            if (extraMeat.equalsIgnoreCase("y")) {
             sandwich.addExtraMeat();
         }
 
         String extraCheese = input("Would you like extra cheese? (y/n): ");
-        if (extraCheese.equalsIgnoreCase("y")) {
+            if (extraCheese.equalsIgnoreCase("y")) {
             sandwich.addExtraCheese();
         }
 
-        return sandwich;
+            return sandwich;
     }
+
 
     public static void addTopping(Sandwich sandwich, String choice, Toppings[] toppings) {
         if (choice.equalsIgnoreCase("none")) {
@@ -95,26 +100,102 @@ public class SandwichBuilder {
         }
     }
 
-    public static void addExtras(Optional order) {
-        // Add drinks
+    public static void addDrink() {
         String drinkSize;
-        do {
+        // Loop until a valid size or "none" is entered
+        while (true) {
             drinkSize = input("Would you like to add a drink? (small/medium/large or 'none' to skip): ").toLowerCase();
-            if (!drinkSize.equals("none")) {
-                order.addDrink(drinkSize);
-            }
-        } while (!drinkSize.equals("none"));
 
-        // Add chips
-        String addChips = input("Would you like to add chips? (y/n): ").toLowerCase();
-        if (addChips.equals("y")) {
-            order.addChips();
+            if (drinkSize.equals("none")) {
+                return; // Skip if "none" is selected
+            } else if (drinkSize.equals("small") || drinkSize.equals("medium") || drinkSize.equals("large")) {
+                break; // Exit the loop if a valid size is entered
+            } else {
+                System.out.println("Invalid size. Please select 'small', 'medium', or 'large' (or 'none' to skip).");
+            }
+        }
+        System.out.println("Select your favourite drink :");
+        printDrinks(Menu.DRINKS);
+        String drinkChoice = scanner.nextLine().trim();
+        Order order = new Order();
+        order.addDrink(drinkSize, drinkChoice);
+    }
+
+    public static void addChips() {
+        String addChips;
+        // Loop to ensure valid input (y or n)
+        while (true) {
+            addChips = input("Would you like to add chips? (y/n): ").toLowerCase();
+
+            if (addChips.equals("n")) {
+                return; // Exit if the user doesn't want chips
+            } else if (addChips.equals("y")) {
+                break; // Proceed if the user wants chips
+            } else {
+                System.out.println("Invalid input. Please enter 'y' for yes or 'n' for no.");
+            }
+        }
+
+        // If the user wants chips, prompt for chip choice
+        System.out.println("Select your favorite chips:");
+        printChips(Menu.CHIPS);
+        String chipsChoice = scanner.nextLine().trim();
+        Order order = new Order();
+        order.addChips(chipsChoice); // Adds the selected chip choice to the order
+    }
+
+    public static void addSauces(Sandwich sandwich, String choice, List<String> sauces) {
+        //System.out.println("User selected sauces: " + choice); // Debugging line
+
+        if (choice.equalsIgnoreCase("none")) {
+            return;
+        }
+
+        if (choice.equalsIgnoreCase("all")) {
+            for (String sauce : sauces) {
+                //System.out.println("Adding sauce: " + sauce); // Debugging line
+                sandwich.addSauce(sauce);
+            }
+            return;
+        }
+
+        String[] selectedSauces = choice.split(",");
+        for (String sauceName : selectedSauces) {
+            sauceName = sauceName.trim().toLowerCase(); // Normalize user input to lowercase
+            for (String sauce : sauces) {
+                if (sauce.toLowerCase().equals(sauceName)) { // Case-insensitive comparison
+                    sandwich.addSauce(sauce); // Add original case sauce from list
+                    break; // Exit loop after match is found
+                }
+            }
         }
     }
+
 
     public static void printToppings(Toppings[] toppings) {
         for (Toppings t : toppings) {
             System.out.print(t.getName() + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printSauces(List<String> sauces) {
+        for (String s : sauces) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printDrinks(List<String> drinks) {
+        for (String d : drinks) {
+            System.out.print(d + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printChips(List<String> chips) {
+        for (String ch : chips) {
+            System.out.print(ch + " ");
         }
         System.out.println();
     }

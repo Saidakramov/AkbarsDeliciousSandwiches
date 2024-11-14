@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.util.List;
+
 public class Menu {
     public static final String[] BREAD_TYPES = {"White", "Wheat", "Rye", "Wrap"};
     public static final String[] SIZES = {"4\"", "8\"", "12\""};
@@ -32,5 +34,10 @@ public class Menu {
             new Toppings("Mushrooms", false, 0, 0, 0)
     };
 
+    public static final List<String> SAUCES = List.of("Mayo", "Mustard", "Ketchup", "Ranch", "Thousand Island", "Vinaigrette");
+
+    public static final List<String> DRINKS = List.of("Coke", "Diet Coke", "Sprite", "Fanta", "Ginger Lemonade", "Lychee Ice Tea", "Mango Lassi");
+
+    public static final List<String> CHIPS = List.of("Lays", "Kettle", "Doritos", "Cheetos", "Ruffles");
 
 }
