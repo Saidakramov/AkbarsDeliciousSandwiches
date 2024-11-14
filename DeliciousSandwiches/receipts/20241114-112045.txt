@@ -1,0 +1,16 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='white', 
+size=12, 
+toasted=false, 
+regularToppings=[], 
+premiumToppings=[Chicken], 
+sauces=[Mayo], 
+sides=[], 
+extraMeat=1, 
+extraCheese=0}
+No drinks selected.
+No chips selected.
+Total Cost: $13.0
+========================

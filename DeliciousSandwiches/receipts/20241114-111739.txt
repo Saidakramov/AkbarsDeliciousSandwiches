@@ -1,0 +1,18 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='wheat', 
+size=4, 
+toasted=false, 
+regularToppings=[Guacamole, Mushrooms], 
+premiumToppings=[Roast Beef, Swiss], 
+sauces=[Ketchup], 
+sides=[], 
+extraMeat=0, 
+extraCheese=0}
+No drinks selected.
+
+Chips:
+ - kettle
+Total Cost: $8.75
+========================

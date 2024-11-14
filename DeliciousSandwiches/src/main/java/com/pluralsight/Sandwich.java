@@ -45,6 +45,10 @@ public class Sandwich {
         sauces.add(sauce);
     }
 
+    public void addSide(String side) {
+        sides.add(side);
+    }
+
     public double calculateCost() {
         double baseCost = switch (size) {
             case 4 -> 5.50;
@@ -52,24 +56,46 @@ public class Sandwich {
             case 12 -> 8.50;
             default -> 0;
         };
-        System.out.println("Base Cost: $" + baseCost);
 
         double premiumCost = premiumToppings.stream().mapToDouble(t -> t.getPrice(size)).sum();
-        System.out.println("Premium Toppings Cost: $" + premiumCost);
+
+        double extraMeatCost = extraMeat * (size == 4 ? 0.50 : size == 8 ? 1.00 : 1.50);
+
+        double extraCheeseCost = extraCheese * (size == 4 ? 0.30 : size == 8 ? 0.60 : 0.90);
+
+        return baseCost + premiumCost + extraMeatCost + extraCheeseCost;
+    }
+
+    public String displaySandwichCost() {
+        StringBuilder stringBuilder = new StringBuilder();
+        double baseCost = switch (size) {
+            case 4 -> 5.50;
+            case 8 -> 7.00;
+            case 12 -> 8.50;
+            default -> 0;
+        };
+        stringBuilder.append("Base Cost: $").append(baseCost).append("\n");
+
+        double premiumCost = premiumToppings.stream().mapToDouble(t -> t.getPrice(size)).sum();
+        stringBuilder.append("Premium Toppings Cost: $").append(premiumCost).append("\n");
 
         double extraMeatCost = extraMeat * (size == 4 ? 0.50 : size == 8 ? 1.00 : 1.50);
         if (extraMeatCost != 0) {
-            System.out.println("Extra Meat Cost: $" + extraMeatCost);
+            stringBuilder.append("Extra Meat Cost: $").append(extraMeatCost).append("\n");
         }
 
         double extraCheeseCost = extraCheese * (size == 4 ? 0.30 : size == 8 ? 0.60 : 0.90);
         if (extraCheeseCost != 0) {
-            System.out.println("Extra Cheese Cost: $" + extraCheeseCost);
+            stringBuilder.append("Extra Cheese Cost: $").append(extraCheeseCost).append("\n");
         }
 
         double totalCost = baseCost + premiumCost + extraMeatCost + extraCheeseCost;
-        System.out.println("Total Sandwich Cost: $" + totalCost);
-        return totalCost;
+        stringBuilder.append("Total Sandwich Cost: $").append(totalCost).append("\n");
+        return stringBuilder.toString();
+    }
+
+    public void setToasted(boolean toasted) {
+        this.toasted = toasted;
     }
 
     @Override

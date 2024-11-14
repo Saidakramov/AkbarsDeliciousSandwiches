@@ -1,0 +1,17 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='white', 
+size=12, 
+toasted=false, 
+regularToppings=[Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Pickles, Guacamole, Mushrooms], 
+premiumToppings=[Chicken, Swiss], 
+sauces=[Thousand Island], 
+sides=[], 
+extraMeat=1, 
+extraCheese=1}
+Drinks:
+ - large ginger lemonade
+No chips selected.
+Total Cost: $19.15
+========================

@@ -1,11 +1,17 @@
 package com.pluralsight;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import static com.pluralsight.SandwichBuilder.*;
 
 public class UserInterface {
     private static final Scanner scanner = new Scanner(System.in);
+    private static Order currentOrder;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Akbar's Delicious Sandwiches!");
@@ -21,8 +27,16 @@ public class UserInterface {
 
 
         switch (opt) {
-            case "1" : orderScreen(); break;
-            case "0" : System.exit(0);
+            case "1" :
+                currentOrder = new Order();
+                orderScreen();
+                break;
+            case "0" :
+                System.out.println("Thank you! Have a great day!");
+                System.exit(0);
+            default:
+                System.out.println("Invalid input. Please enter 1 or 2.");
+                homeScreen();
         }
     }
 
@@ -37,23 +51,54 @@ public class UserInterface {
 
         switch (opt) {
             case "1":
-                buildSandwichLoop();
+                SandwichBuilder.buildSandwichLoop(currentOrder);
                 orderScreen();
                 break;
             case "2":
-                addDrink();
+                SandwichBuilder.addDrink(currentOrder);
                 orderScreen();
                 break;
             case "3":
-                addChips();
+                SandwichBuilder.addChips(currentOrder);
                 orderScreen();
             case "4":
-                Order order = new Order();
-                order.displayOrderSummary();
+                checkout();
                 break;
             case "0":
+                System.out.println("Order canceled.");
+                currentOrder = null; // reset current order
                 homeScreen();
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+                orderScreen();
 
+        }
+    }
+
+    public static void checkout() {
+        if (currentOrder != null) {
+            System.out.println(currentOrder.displayOrderSummary());
+        }
+        String opt = input("Would like to proceed with the order?" +
+                "\n(1) - Confirm" +
+                "\n(2) - Cancel" +
+                "\n ");
+
+        switch (opt) {
+            case "1":
+                currentOrder.receipts();
+                System.out.println("Thank you for your order!");
+                homeScreen();
+                break;
+            case "2":
+                System.out.println("Order canceled.");
+                currentOrder = null;
+                homeScreen();
+                break;
+            default:
+                System.out.println("Invalid input. Please enter 1 or 2");
+                checkout();
         }
     }
 

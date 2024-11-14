@@ -1,0 +1,28 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='wheat', 
+size=12, 
+toasted=true, 
+regularToppings=[Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Pickles, Guacamole, Mushrooms], 
+premiumToppings=[Roast Beef, Cheddar], 
+sauces=[Thousand Island], 
+sides=[], 
+extraMeat=1, 
+extraCheese=1}
+
+Base Cost: $8.5
+Premium Toppings Cost: $5.25
+Extra Meat Cost: $1.5
+Extra Cheese Cost: $0.9
+Total Sandwich Cost: $16.15
+
+
+Drinks:
+ - large Ginger Lemonade
+
+Chips:
+ - Cheetos
+
+Total Cost: $20.65
+========================

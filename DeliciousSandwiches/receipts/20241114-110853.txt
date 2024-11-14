@@ -1,0 +1,17 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='wrap', 
+size=8, 
+toasted=false, 
+regularToppings=[Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Pickles, Guacamole, Mushrooms], 
+premiumToppings=[Steak, Swiss], 
+sauces=[Mustard], 
+sides=[], 
+extraMeat=1, 
+extraCheese=1}
+No drinks selected.
+Chips:
+ - lays
+Total Cost: $13.6
+========================

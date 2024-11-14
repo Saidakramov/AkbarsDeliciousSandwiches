@@ -6,9 +6,7 @@ import java.util.Scanner;
 public class SandwichBuilder {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void buildSandwichLoop() {
-        Order order = new Order();
-
+    public static void buildSandwichLoop(Order order) {
         String addMoreSandwiches;
 
         // Allow the user to build multiple sandwiches in the same order
@@ -55,7 +53,14 @@ public class SandwichBuilder {
         String sauceChoice = scanner.nextLine();
         addSauces(sandwich, sauceChoice, Menu.SAUCES);
 
+        //side options
+        System.out.println(" Select your favourite side or 'none' to skip):");
+        printSides(Menu.SIDES);
+        String sideChoice = scanner.nextLine();
+        addSide(sandwich, sideChoice, Menu.SIDES);
+
         boolean toasted = input("Would you like it toasted? (y/n): ").equalsIgnoreCase("y");
+        sandwich.setToasted(true);
 
         // Prompt for extra meat and cheese
         String extraMeat = input("Would you like extra meat? (y/n): ");
@@ -100,28 +105,32 @@ public class SandwichBuilder {
         }
     }
 
-    public static void addDrink() {
+    public static void addDrink(Order order) {
         String drinkSize;
         // Loop until a valid size or "none" is entered
         while (true) {
-            drinkSize = input("Would you like to add a drink? (small/medium/large or 'none' to skip): ").toLowerCase();
+            drinkSize = input("Would you like to add a drink? " +
+                    "\n(1) - small $2.00 " +
+                    "\n(2) - medium $2.50" +
+                    "\n(3) - large  $3.50 " +
+                    "\n(0) - no drinks " +
+                    "\n ");
 
-            if (drinkSize.equals("none")) {
+            if (drinkSize.equals("0")) {
                 return; // Skip if "none" is selected
-            } else if (drinkSize.equals("small") || drinkSize.equals("medium") || drinkSize.equals("large")) {
+            } else if (drinkSize.equals("1") || drinkSize.equals("2") || drinkSize.equals("3")) {
                 break; // Exit the loop if a valid size is entered
             } else {
-                System.out.println("Invalid size. Please select 'small', 'medium', or 'large' (or 'none' to skip).");
+                System.out.println("Invalid size. Please select 1, 2, 3 or 0.");
             }
         }
         System.out.println("Select your favourite drink :");
         printDrinks(Menu.DRINKS);
         String drinkChoice = scanner.nextLine().trim();
-        Order order = new Order();
         order.addDrink(drinkSize, drinkChoice);
     }
 
-    public static void addChips() {
+    public static void addChips(Order order) {
         String addChips;
         // Loop to ensure valid input (y or n)
         while (true) {
@@ -140,7 +149,6 @@ public class SandwichBuilder {
         System.out.println("Select your favorite chips:");
         printChips(Menu.CHIPS);
         String chipsChoice = scanner.nextLine().trim();
-        Order order = new Order();
         order.addChips(chipsChoice); // Adds the selected chip choice to the order
     }
 
@@ -171,6 +179,20 @@ public class SandwichBuilder {
         }
     }
 
+    public static void addSide(Sandwich sandwich, String choice, List<String> sides) {
+        if (choice.equalsIgnoreCase("none")) {
+            return;
+        }
+
+        for (String side : sides) {
+            if (choice.equalsIgnoreCase(side)) {
+                sandwich.addSide(side);
+                return;
+            }
+        }
+        System.out.println("Invalid input. Please enter the correct type.");
+    }
+
 
     public static void printToppings(Toppings[] toppings) {
         for (Toppings t : toppings) {
@@ -182,6 +204,13 @@ public class SandwichBuilder {
     public static void printSauces(List<String> sauces) {
         for (String s : sauces) {
             System.out.print(s + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printSides(List<String> sides) {
+        for (String side : sides) {
+            System.out.println(side + " ");
         }
         System.out.println();
     }

@@ -1,0 +1,23 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='white', 
+size=4, 
+toasted=false, 
+regularToppings=[Lettuce, Onions], 
+premiumToppings=[Steak, American], 
+sauces=[Ketchup], 
+sides=[], 
+extraMeat=1, 
+extraCheese=1}
+Base Cost: $5.5
+Premium Toppings Cost: $1.75/nExtra Meat Cost: $0.5
+Extra Cheese Cost: $0.3
+Total Sandwich Cost: $8.05
+
+No drinks selected.
+
+Chips:
+ - ruffles
+Total Cost: $9.55
+========================

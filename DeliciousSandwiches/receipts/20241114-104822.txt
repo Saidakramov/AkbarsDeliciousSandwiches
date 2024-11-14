@@ -1,0 +1,15 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='wheat', 
+size=4, 
+toasted=false, 
+regularToppings=[], 
+premiumToppings=[Roast Beef, Swiss], 
+sauces=[], 
+sides=[], 
+extraMeat=1, 
+extraCheese=1}
+No drinks selected.No chips selected.
+Total Cost: $8.05
+========================

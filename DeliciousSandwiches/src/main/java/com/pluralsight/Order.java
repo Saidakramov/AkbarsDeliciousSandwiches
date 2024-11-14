@@ -1,5 +1,9 @@
 package com.pluralsight;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,18 +31,21 @@ public class Order {
     }
 
     public void addDrink(String size, String choice) {
-        switch (size.toLowerCase()) {
-            case "small":
+        switch (size) {
+            case "1":
+                size = "small";
                 smallDrink++;
                 break;
-            case "medium":
+            case "2":
+                size = "medium";
                 mediumDrink++;
                 break;
-            case "large":
+            case "3":
+                size = "large";
                 largeDrink++;
                 break;
             default:
-                System.out.println("Invalid size. Please select 'small', 'medium', or 'large'.");
+                System.out.println("Invalid size. Please select 1 'for small', 2 'for medium', or 3 'for large drink'.");
                 return; // Exit if an invalid size is provided
         }
         drinks.add(size + " " + choice); // Store the size and drink choice
@@ -58,33 +65,56 @@ public class Order {
         return sandwichTotal + drinkTotal + chipsTotal;
     }
 
-    public void displayOrderSummary() {
-        System.out.println("\nOrder Summary:");
+    public String displayOrderSummary() {
+        StringBuilder summary = new StringBuilder();
+        summary.append("Order Summary:").append("\n");
         for (Sandwich sandwich : sandwiches) {
-            System.out.println(sandwich);
+            summary.append(sandwich).append("\n");
+           summary.append("\n").append(sandwich.displaySandwichCost()).append("\n");
         }
 
         // Display each drink with its size and choice
         if (!drinks.isEmpty()) {
-            System.out.println("Drinks:");
+            summary.append("Drinks:\n");
             for (String drink : drinks) {
-                System.out.println(" - " + drink);
+                summary.append(" - ").append(drink).append("\n");
             }
         } else {
-            System.out.println("No drinks selected.");
+            summary.append("No drinks selected.\n");
         }
 
         // Display each chip choice
         if (!chipTypes.isEmpty()) {
-            System.out.println("Chips:");
+            summary.append("\nChips:\n");
             for (String chip : chipTypes) {
-                System.out.println(" - " + chip);
+                summary.append(" - ").append(chip).append("\n");
             }
         } else {
-            System.out.println("No chips selected.");
+            summary.append("No chips selected.\n");
         }
 
-        System.out.println("Total Cost: $" + calculateTotal());
+        summary.append("\nTotal Cost: $").append(calculateTotal()).append("\n");
+        return summary.toString();
+    }
+
+    public void receipts() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
+        String timestamp = LocalDateTime.now().format(formatter);
+        String filename = "receipts/" + timestamp + ".txt";
+
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write("Order Receipt\n");
+            writer.write("=========================\n");
+
+            //write order details to the receipt
+           writer.write(displayOrderSummary());
+
+            writer.write("========================\n");
+            System.out.println("Receipt save as :" + filename);
+
+        } catch (IOException e) {
+            System.out.println("Error message code is : " + e.getMessage());
+        }
     }
 
 }

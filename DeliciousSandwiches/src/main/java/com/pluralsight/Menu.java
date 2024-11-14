@@ -40,4 +40,6 @@ public class Menu {
 
     public static final List<String> CHIPS = List.of("Lays", "Kettle", "Doritos", "Cheetos", "Ruffles");
 
+    public static final List<String> SIDES = List.of("Fries", "Waffle Fries", "House Salad");
+
 }

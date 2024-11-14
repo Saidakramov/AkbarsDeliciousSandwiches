@@ -1,0 +1,28 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='Wheat', 
+size=8, 
+toasted=true, 
+regularToppings=[Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Pickles, Guacamole, Mushrooms], 
+premiumToppings=[Chicken, Provolone], 
+sauces=[Ketchup], 
+sides=[Waffle Fries], 
+extraMeat=1, 
+extraCheese=1}
+
+Base Cost: $7.0
+Premium Toppings Cost: $3.5
+Extra Meat Cost: $1.0
+Extra Cheese Cost: $0.6
+Total Sandwich Cost: $12.1
+
+
+Drinks:
+ - 2 coke
+
+Chips:
+ - lays
+
+Total Cost: $16.1
+========================

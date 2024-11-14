@@ -1,0 +1,8 @@
+Order Receipt
+=========================
+Order Summary:
+Drinks:
+ - small coke
+No chips selected.
+Total Cost: $2.0
+========================

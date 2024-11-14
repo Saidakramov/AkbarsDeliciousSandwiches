@@ -1,0 +1,29 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='rye', 
+size=8, 
+toasted=false, 
+regularToppings=[Lettuce, Pickles, Mushrooms, Guacamole], 
+premiumToppings=[Chicken, Cheddar], 
+sauces=[Vinaigrette], 
+sides=[], 
+extraMeat=1, 
+extraCheese=1}
+Sandwich{breadType='wrap', 
+size=12, 
+toasted=false, 
+regularToppings=[Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Pickles, Guacamole, Mushrooms], 
+premiumToppings=[Roast Beef, Provolone], 
+sauces=[Ketchup], 
+sides=[], 
+extraMeat=0, 
+extraCheese=0}
+Drinks:
+ - medium sprite
+ - large coke
+Chips:
+ - lays
+ - ruffles
+Total Cost: $34.35
+========================

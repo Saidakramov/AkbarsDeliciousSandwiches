@@ -1,0 +1,17 @@
+Order Receipt
+=========================
+Order Summary:
+Sandwich{breadType='wrap', 
+size=4, 
+toasted=false, 
+regularToppings=[Onions], 
+premiumToppings=[Roast Beef, Cheddar], 
+sauces=[Mustard], 
+sides=[], 
+extraMeat=0, 
+extraCheese=0, 
+cost description =7.25}
+Drinks:
+ - small fanta
+No chips selected.Total Cost: $9.25
+========================
