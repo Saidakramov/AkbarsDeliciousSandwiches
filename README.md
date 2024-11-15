@@ -57,3 +57,47 @@
   - (1) - Confirm : `1` confirms the order and saves the receipt in the `receipts` folder with current date and time as a filename, and goes back to `Home Screen`.
   - (2) - Cancel : `2` cancels the order and goes back to `Home Screen`.
 ## Screenshots
+<br>
+
+## Diagram
+<img width="854" alt="Diagram" src="https://github.com/user-attachments/assets/ee406bc8-c654-42c4-be8b-393dfc44218b">
+<br>
+
+## Projects
+<img width="1434" alt="Projects" src="https://github.com/user-attachments/assets/ba2f537a-9d21-4275-bc4e-4f113cd6ebbd">
+<br>
+
+## HomeScreen
+<img width="355" alt="HomeScree" src="https://github.com/user-attachments/assets/12202b84-bbfa-42fb-8518-2f1f1ceecf16">
+<br>
+
+## OrderScreen
+<img width="249" alt="OrderScreen" src="https://github.com/user-attachments/assets/ea22ba41-76d0-43f9-bf94-416d3904dce9">
+<br>
+
+## AddSandwich
+<img width="877" alt="AddSandwich" src="https://github.com/user-attachments/assets/73515679-7879-4ba0-9aee-b667b784c6ac">
+<br>
+
+## AddDrink
+<img width="563" alt="AddDrink" src="https://github.com/user-attachments/assets/40fda00c-d23a-48d6-9b17-6d35367c2d3b">
+<br>
+
+## AddChips
+<img width="301" alt="AddChips" src="https://github.com/user-attachments/assets/214d8614-9807-4d9d-9ad7-a1ccbf4b3420">
+<br>
+
+## Checkout
+<img width="443" alt="Checkout" src="https://github.com/user-attachments/assets/5f87d578-0942-4ae0-adc4-291ec5541581">
+<br>
+
+## Confirm
+<img width="388" alt="Confirm" src="https://github.com/user-attachments/assets/18ea6a30-c9b9-4337-9052-38cf6b29ea73">
+<br>
+
+## Receipt Example
+<img width="462" alt="Receipt" src="https://github.com/user-attachments/assets/1df60981-b09e-4375-8001-1d19a436c3fe">
+
+
+
+
