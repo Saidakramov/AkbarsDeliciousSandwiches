@@ -1,11 +1,5 @@
 package com.pluralsight;
 
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import static com.pluralsight.SandwichBuilder.*;
 
@@ -21,7 +15,7 @@ public class UserInterface {
 
     public static void homeScreen() {
         String opt = input("\nPlease choose options below:" +
-                "\n(1) - New order" +
+                "\n(1) - New Order" +
                 "\n(0) - Exit - exit the application" +
                 "\n ");
 

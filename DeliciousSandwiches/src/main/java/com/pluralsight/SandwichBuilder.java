@@ -48,13 +48,13 @@ public class SandwichBuilder {
         addTopping(sandwich, regularChoice, Menu.REGULAR_TOPPINGS);
 
         //sauces options
-        System.out.println(" Select your favourite sauces (type names separated by commas, or type 'all' for everything, or 'none' to skip):");
+        System.out.println("Select your favourite sauces (type names separated by commas, or type 'all' for everything, or 'none' to skip):");
         printSauces(Menu.SAUCES);
         String sauceChoice = scanner.nextLine();
         addSauces(sandwich, sauceChoice, Menu.SAUCES);
 
         //side options
-        System.out.println(" Select your favourite side or 'none' to skip):");
+        System.out.println("Select your favourite side or 'none' to skip):");
         printSides(Menu.SIDES);
         String sideChoice = scanner.nextLine();
         addSide(sandwich, sideChoice, Menu.SIDES);
